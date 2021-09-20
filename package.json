@@ -1,0 +1,28 @@
+{
+  "name": "larangul",
+  "version": "1.0.0",
+  "description": "A package which automates converting from laravel-blade to laravel-angular",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alimohammadiok/larangul.git"
+  },
+  "keywords": [
+    "blade",
+    "to",
+    "angular",
+    "convertor",
+    "php",
+    "spa",
+    "convertor"
+  ],
+  "author": "Ali Mohammadi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alimohammadiok/larangul/issues"
+  },
+  "homepage": "https://github.com/alimohammadiok/larangul#readme"
+}
