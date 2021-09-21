@@ -23,7 +23,7 @@ exec('ls -la /', (err, stdout, stderr) => {
     if (err) {
       // node couldn't execute the command
       console.log('hata mi var?')
-      return;
+      return ;
     }
   
     // the *entire* stdout and stderr (buffered)
