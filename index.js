@@ -1,38 +1,64 @@
 const { exec } = require("child_process");
 const readline = require("readline");
+const fs = require('fs');
 
-let laraVersionlaravelVersion;
-let angularVersion;
 
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
+// const rl = readline.createInterface({
+//     input: process.stdin,
+//     output: process.stdout
+// });
 
-rl.question("What is your Larave version ? ", function(laraVersion) {
-    rl.question("Which Angular version do you want to convert to ? ", function(anguVersion){
+// rl.question("What is your Larave version ? ", function(laraVersion) {
+//     rl.question("Which Angular version do you want to convert to ? ", function(anguVersion){
        
-        console.log(`larave version is ${laraVersion} and the Angular version is ${anguVersion}`);
+//         console.log(`lara version is ${laraVersion} and the Angular version is ${anguVersion}`);
 
-        rl.close();
+//         rl.close();
+//     });
+// });
+// rl.on("close", function() {
+//     console.log("\nBYE BYE !!!");
+//     process.exit(0);
+// });
+
+async function askTheQuestions(callback) {
+    const questions = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
     });
-});
+    questions.question("What is your Larave version ? ", function(laraVersion) {
+        questions.question("Which Angular version do you want to convert to ? ", function(anguVersion){
+            console.log(`lara version is ${laraVersion} and the Angular version is ${anguVersion}`);
+            questions.close();
+        });
+    });
+    callback;
+}
 
+async function processLineByLine() {
+    const fileStream = fs.createReadStream('larapost/routes/web.php');
+    const rl = readline.createInterface({
+        input: fileStream,
+        crlfDelay: Infinity
+    });
 
-exec('ls -la /', (err, stdout, stderr) => {
-    if (err) {
-      // node couldn't execute the command
-      console.log('hata mi var?')
-      return ;
-    }
+    // Note: we use the crlfDelay option to recognize all instances of CR LF
+    // ('\r\n') in input.txt as a single line break.
   
-    // the *entire* stdout and stderr (buffered)
-    console.log(`stdout: ${stdout}`);
-    console.log(`stderr: ${stderr}`);
-});
+    for await (const line of rl) {
+      // Each line in input.txt will be successively available here as `line`.
+      console.log(`Line from file: ${line}`);
+    }
+  }
+function digTheRoutes()  {
+    
+    fs.readFile('larapost/routes/web.php', function(err, data) {
+        if(err) throw err;
+        var pos = data.toString().search(/Route::get/);
+        console.log(pos)
+    });
+}
+ 
 
-
-rl.on("close", function() {
-    console.log("\nBYE BYE !!!");
-    process.exit(0);
-});
+ digTheRoutes();
+   
