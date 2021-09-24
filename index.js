@@ -56,17 +56,18 @@ function digTheRoutes()  {
         var fileContent = data.toString();
         var posArray = [];
         let i = 0;
-        while(i < fileContent.length) {
-            pos = fileContent.indexOf('Route', i);
+        lastIndex = fileContent.lastIndexOf('Route');
+        while(i < lastIndex) {
+            pos = fileContent.indexOf('Route::', i);
             if(pos>0) {
                 posArray.push(pos);
                 
             }
-            i+=pos;
+            i=pos+1;
         }
        
        
-        console.log(posArray+'and the array length is'+ fileContent.length)
+        console.log(posArray+'and the array length is'+ fileContent.length+ 'last index is'+ lastIndex)
     });
 }
  digTheRoutes();
