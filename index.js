@@ -54,20 +54,19 @@ function digTheRoutes()  {
     fs.readFile('larapost/routes/web.php', function(err, data) {
         if(err) throw err;
         var fileContent = data.toString();
-        var posArraylength = fileContent.length;
         var posArray = [];
         let i = 0;
         while(i < fileContent.length) {
             pos = fileContent.indexOf('Route', i);
             if(pos>0) {
                 posArray.push(pos);
+                
             }
-            
             i+=pos;
         }
        
        
-        console.log(posArray)
+        console.log(posArray+'and the array length is'+ fileContent.length)
     });
 }
  digTheRoutes();
