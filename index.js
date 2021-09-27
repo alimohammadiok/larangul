@@ -60,8 +60,7 @@ function digTheRoutes()  {
         while(i < lastIndex) {
             pos = fileContent.indexOf('Route::', i);
             if(pos>0) {
-                posArray.push(pos);
-                
+                posArray.push(pos); 
             }
             i=pos+1;
         }
@@ -71,4 +70,13 @@ function digTheRoutes()  {
     });
 }
  digTheRoutes();
-   
+ exec('ng new testapp', (err, stdout, stderr) => {
+    if (err) {
+      // node couldn't execute the command
+      return;
+    }
+  
+    // the *entire* stdout and stderr (buffered)
+    console.log(`stdout: ${stdout}`);
+    console.log(`stderr: ${stderr}`);
+  });   
