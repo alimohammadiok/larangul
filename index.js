@@ -55,6 +55,7 @@ function digTheRoutes()  {
         if(err) throw err;
         var fileContent = data.toString();
         var posArray = [];
+        var routeArray = [];
         let i = 0;
         lastIndex = fileContent.lastIndexOf('Route');
         while(i < lastIndex) {
@@ -64,9 +65,15 @@ function digTheRoutes()  {
             }
             i=pos+1;
         }
+
+        for (var k = 0; k < posArray.length; k++) {
+            betweenRoutes = fileContent.substring(posArray[k],posArray[k+1]);
+            routeArray.push(betweenRoutes);
+            
+          }
        
        
-        console.log(posArray+'and the array length is'+ fileContent.length+ 'last index is'+ lastIndex)
+        console.log(posArray+'and the array length is'+ fileContent.length+ 'last index is'+ lastIndex+ routeArray);
     });
 }
  digTheRoutes();
@@ -79,4 +86,6 @@ function digTheRoutes()  {
     // the *entire* stdout and stderr (buffered)
     console.log(`stdout: ${stdout}`);
     console.log(`stderr: ${stderr}`);
-  });   
+  }); 
+  
+  
